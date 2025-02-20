@@ -60,4 +60,14 @@ app.post("/webhook", async (req, res) => {
     res.sendStatus(200);
 });
 
+app.get("/config", (req, res) => {
+    res.json({
+      name: "Payment Monitoring & Alerts",
+      type: "output",
+      description: "Monitors failed payments, chargebacks, and revenue reports from Stripe, Flutterwave, and Paystack, sending alerts via Telex.",
+      webhook_url: "https://payment-monitoring-alerts.onrender.com/webhook",
+      events: ["payment.failed", "chargeback", "revenue.update"]
+    });
+});
+
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
