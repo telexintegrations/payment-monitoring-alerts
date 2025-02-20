@@ -1,0 +1,8 @@
+{
+    "name": "Payment Monitoring & Alerts",
+    "type": "output",
+    "description": "Monitors failed payments, chargebacks, and revenue reports from Stripe, Flutterwave, and Paystack, sending alerts via Telex.",
+    "webhook_url": "https://your-deployed-webhook-url.com/webhook",
+    "events": ["payment.failed", "chargeback", "revenue.update"]
+}
+  
