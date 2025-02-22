@@ -1,8 +1,35 @@
 {
-    "name": "Payment Monitoring & Alerts",
-    "type": "output",
-    "description": "Monitors failed payments, chargebacks, and revenue reports from Flutterwave, and Paystack, sending alerts via Telex.",
-    "webhook_url": "https://payment-monitoring-alerts.onrender.com/webhook",
-    "events": ["payment.failed", "chargeback", "revenue.update"]
+    "data": {
+      "date": {
+        "created_at": "2025-02-20",
+        "updated_at": "2025-02-22"
+      },
+      "descriptions": {
+        "app_name": "Payment Monitoring & Alerts",
+        "app_description": "Monitors failed payments, chargebacks, and revenue reports from Flutterwave and Paystack, sending alerts via Telex.",
+        "app_logo": "https://your-image-hosting.com/logo.png",
+        "app_url": "https://payment-monitoring-alerts.onrender.com",
+        "background_color": "#fff"
+      },
+      "is_active": true,
+      "integration_type": "output",
+      "integration_category": "Finance & Payments",
+      "key_features": [
+        "Real-time alerts",
+        "Supports multiple payment gateways",
+        "Detects anomalies in payments",
+        "Sends notifications via Telex, Slack, and Email"
+      ],
+      "author": "EstherAjayi",
+      "settings": [
+        {
+          "label": "Notification",
+          "type": "checkbox",
+          "required": true,
+          "default": "5"
+        }
+      ],
+      "target_url": "https://payment-monitoring-alerts.onrender.com/webhook"
+    }
 }
   
