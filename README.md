@@ -43,7 +43,64 @@ node index.js
 3️⃣ The integration will automatically listen for webhook events.
 4️⃣ When an event occurs, alerts will be sent to Telex, Slack, and Email.
 
-🔍 Example Webhook Events & Responses
+## 🔍 How to Test the Integration
+
+1. Test Webhooks with Postman
+
+Manually trigger a test event by sending a POST request to the webhook URL:
+
+POST https://payment-monitoring-alerts.onrender.com/webhook
+Content-Type: application/json
+
+Payload:
+```sh
+{
+  "status": "failed",
+  "reference": "txn_123456",
+  "user": "dainty@gmail.com",
+  "amount": 5000,
+  "currency": "NGN",
+  "reason": "Expired card"
+}
+```
+
+2. Test Webhooks from Telex
+
+1️⃣ Go to Telex Dashboard
+- Navigate to Integrations → Logs
+- Find Payment Monitoring & Alerts
+
+2️⃣ Trigger a Test Event
+
+Click Send Test Event
+If Telex is correctly set up, alerts should be sent to:
+✅ Telex notifications in the #payment-monitoring-alert channel
+✅ Slack (if configured)
+✅ Email (if configured)
+
+3️⃣ If No Alerts Appear in Telex
+
+Instead, manually trigger a test using Postman:
+
+Send a POST request to https://payment-monitoring-alerts.onrender.com/webhook with this JSON payload:
+```json
+{
+  "status": "failed",
+  "reference": "txn_123456",
+  "user": "dainty@gmail.com",
+  "amount": 5000,
+  "currency": "NGN",
+  "reason": "Expired card"
+}
+```
+
+4️⃣ Check Logs for Errors
+
+- Review your server logs (on Render)
+- Check Telex’s Failed Requests logs
+
+
+## 🔍 Example Webhook Events & Responses
 ▶️ Incoming Webhook from Paystack
 ```sh
 {
