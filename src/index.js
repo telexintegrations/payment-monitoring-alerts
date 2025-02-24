@@ -47,8 +47,9 @@ app.get('/monitor-payments', async (req, res) => {
 // 📩 Webhook for Payment Events
 app.post("/webhook", async (req, res) => {
     const event = req.body;
-    console.log("Received webhook event:", event);
+    console.log("🔍 Received webhook event:", event);
 
+    // Handle format from Postman (Direct request)
     if (event.status === "failed") {
         console.log(`⚠️ Failed Payment Alert: ${event.reference}`);
 
@@ -56,9 +57,22 @@ app.post("/webhook", async (req, res) => {
         await sendSlackAlert(event);
         await sendEmailAlert(event);
     }
+    // Handle format from Telex (Webhook request)
+    else if (event.event === "payment.failed") {
+        const eventData = event.data;
+        console.log(`⚠️ Failed Payment Alert: ${eventData.reference}`);
+
+        await sendTelexAlert(eventData);  // Pass extracted event data ✅
+        await sendSlackAlert(eventData);
+        await sendEmailAlert(eventData);
+    } 
+    else {
+        console.log("⚠️ Unrecognized event, skipping...");
+    }
 
     res.sendStatus(200);
 });
+
 
 app.get("/config", (req, res) => {
     res.json({
